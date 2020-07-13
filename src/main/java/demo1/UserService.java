@@ -1,15 +1,26 @@
 package demo1;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+@Component
 public class UserService {
-    private MailService mailService;
+    private final MailService mailService;
+    private final Validators validators;
 
-    public void setMailService(MailService mailService) {
+    @Autowired //IDE不建议使用字段注入，改为构造函数注入
+    public UserService(MailService mailService, Validators validators) {
         this.mailService = mailService;
+        this.validators = validators;
     }
+
+    /*public void setMailService(MailService mailService) {
+        this.mailService = mailService;
+    }*/
 
     private List<User> users = new ArrayList<>(Arrays.asList( // users:
             new User((long) 1, "bob@example.com", "password", "Bob"), // bob
@@ -31,6 +42,8 @@ public class UserService {
     }
 
     public User register(String email, String password, String name) {
+        validators.validate(email, password, name);
+
         users.forEach((user) -> {
             if (user.getEmail().equalsIgnoreCase(email)) {
                 throw new RuntimeException("email exist.");

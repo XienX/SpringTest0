@@ -8,5 +8,6 @@ https://www.cnblogs.com/chenyulin/p/creatSpringproject.html
 
 ## demo1
 IoC原理  
-用户注册登录的例子
+用户注册登录的例子  
+使用xml配置\Annotation配置
 

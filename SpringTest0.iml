@@ -13,6 +13,7 @@
         <fileset id="fileset3" name="Application_demo1" removed="false">
           <dependency>fileset2</dependency>
           <file>file://$MODULE_DIR$/src/main/resources/application_demo1.xml</file>
+          <file>file://$MODULE_DIR$/src/main/java/demo1/AppConfig.java</file>
         </fileset>
       </configuration>
     </facet>
