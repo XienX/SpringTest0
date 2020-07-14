@@ -15,7 +15,6 @@ public class AppConfig { //使用Annotation配置
         System.out.println(user.getName());
 
         userService.register("xxiien99@gmail.com", "0000000", "Xien");
-        User user1;
-        user1 = userService.login("xxiien99@gmail.com", "0000000");
+        User user1 = userService.login("xxiien99@gmail.com", "0000000");
     }
 }
