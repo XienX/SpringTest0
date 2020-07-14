@@ -1,6 +1,7 @@
 package demo1;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -13,6 +14,7 @@ import java.time.format.DateTimeFormatter;
 public class MailService {
 
     @Autowired(required = false) //可选注入，虽然IDE不推荐写在字段上，但只有这样才起作用
+    //@Qualifier("z") //有多个同类型的Bean，注入需指定名称，有@Primary时可不写名称
     private ZoneId zoneId = ZoneId.systemDefault();
 
     /*public void setZoneId(ZoneId zoneId) {

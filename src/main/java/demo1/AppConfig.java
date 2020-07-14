@@ -1,24 +1,26 @@
 package demo1;
 
-import org.springframework.context.ApplicationContext;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.*;
 
 import java.time.ZoneId;
-
-import static java.lang.Thread.sleep;
 
 @Configuration
 @ComponentScan
 public class AppConfig { //使用Annotation配置
 
     // 创建一个Bean:
-    @Bean
+    @Bean("z") //指定别名两种方式
+    @Primary //指定为主要Bean
     ZoneId createZoneId() {
         return ZoneId.of("Z");
+    }
+
+    @Bean
+    @Qualifier("utc8")
+    ZoneId createZoneOfUTC8() {
+        return ZoneId.of("UTC+08:00");
     }
 
     public static void main(String[] args) {
