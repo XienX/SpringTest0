@@ -21,14 +21,14 @@ import java.util.stream.Collectors;
 public class MailService {
 
     @Autowired(required = false) //可选注入，虽然IDE不推荐写在字段上，但只有这样才起作用
-    //@Qualifier("z") //有多个同类型的Bean，注入需指定名称，有@Primary时可不写名称
+    @Qualifier("shanghai") //有多个同类型的Bean，注入需指定名称，有@Primary时可不写
     private ZoneId zoneId = ZoneId.systemDefault();
 
     /*public void setZoneId(ZoneId zoneId) {
         this.zoneId = zoneId;
     }*/
 
-    @Value("classpath:/test.txt") //使用Resource
+    @Value("classpath:/demo1/test.txt") //使用Resource
     private Resource resource;
 
     private String word;

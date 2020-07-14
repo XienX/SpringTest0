@@ -1,6 +1,7 @@
 package demo1;
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.*;
 
@@ -8,7 +9,17 @@ import java.time.ZoneId;
 
 @Configuration
 @ComponentScan
+@PropertySource("demo1.properties") // 表示读取classpath的demo1.properties
 public class AppConfig { //使用Annotation配置
+
+    @Value("${app.zone:Z}") //读取key为app.zone的value，但如果key不存在，就使用默认值Z
+    String zoneId;
+
+    @Bean("shanghai")
+    ZoneId createZoneOfShanghai() {
+        return ZoneId.of(zoneId);
+    }
+
 
     // 创建一个Bean:
     @Bean("z") //指定别名两种方式
