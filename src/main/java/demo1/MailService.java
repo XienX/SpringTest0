@@ -3,6 +3,8 @@ package demo1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -16,6 +18,16 @@ public class MailService {
     /*public void setZoneId(ZoneId zoneId) {
         this.zoneId = zoneId;
     }*/
+
+    @PostConstruct //初始化
+    public void init() {
+        System.out.println("Init mail service with zoneId = " + this.zoneId);
+    }
+
+    @PreDestroy //销毁
+    public void shutdown() {
+        System.out.println("Shutdown mail service");
+    }
 
     public String getTime() {
         return ZonedDateTime.now(zoneId).format(DateTimeFormatter.ISO_ZONED_DATE_TIME);
